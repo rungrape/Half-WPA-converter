@@ -11,11 +11,24 @@ pip install pypcapfile
 
 # 3.Tool's abilities and properties.
 Format conversion:
-       * cap -> hccap (usage: python converter.py input.cap hccap / python converter.py input.cap hccap essid)
-       * cap -> hccapx (usage: python converter.py input.cap hccapx / python converter.py input.cap hccapx essid)
-       * hccap -> hccapx (usage: python converter.py input.hccap hccapx)
+* cap -> hccap (usage: python converter.py input.cap hccap / python converter.py input.cap hccap essid)
+* cap -> hccapx (usage: python converter.py input.cap hccapx / python converter.py input.cap hccapx essid)
+* hccap -> hccapx (usage: python converter.py input.hccap hccapx)
 
 # 4.Launch.
+So you have the network dump such as following
 ```
-python converter.py input.inputformat outputformat / python converter.py input.inputformat outputformat essid
+[![Picture to Yandex](https://disk.yandex.ru/client/disk/git_conv?display=normal&groupBy=none&order=1&selected=%2Fdisk%2Fgit_conv%2Fdump.jpg&sort=name&view=list&wasAsideAnimated=true&typeClustering=geo&action=null&idAlbum=undefined&selectionSource=listing&idApp=client&dialog=slider&idDialog=%2Fdisk%2Fgit_conv%2Fdump.jpg)](https://disk.yandex.ru/client/disk/git_conv?display=normal&groupBy=none&order=1&selected=%2Fdisk%2Fgit_conv%2Fdump.jpg&sort=name&view=list&wasAsideAnimated=true&typeClustering=geo&action=null&idAlbum=undefined&selectionSource=listing&idApp=client&dialog=slider&idDialog=%2Fdisk%2Fgit_conv%2Fdump.jpg)
+```
+Then you launch the converter as following:
+```
+C:/.../python.exe converter.py dump.cap hccap
+```
+The tool will gen file with name such as handshake_essid_smth.hccap (e.g. handshake_LOL_1501068275.2922.hccap). Then you are to run the hashcat:
+```
+hashcat64.exe -d 1 -a 0 -m 2500 handshake_LOL_1501068275.2922.hccap rockyou.txt
+```
+Result:
+```
+[![Picture to Yandex](https://disk.yandex.ru/client/disk/git_conv?display=normal&groupBy=none&order=1&selected=%2Fdisk%2Fgit_conv%2Fcracked.jpg&sort=name&view=list&wasAsideAnimated=true&typeClustering=geo&action=null&idAlbum=undefined&selectionSource=listing&idApp=client&dialog=slider&idDialog=%2Fdisk%2Fgit_conv%2Fcracked.jpg)](https://disk.yandex.ru/client/disk/git_conv?display=normal&groupBy=none&order=1&selected=%2Fdisk%2Fgit_conv%2Fcracked.jpg&sort=name&view=list&wasAsideAnimated=true&typeClustering=geo&action=null&idAlbum=undefined&selectionSource=listing&idApp=client&dialog=slider&idDialog=%2Fdisk%2Fgit_conv%2Fcracked.jpg)
 ```
