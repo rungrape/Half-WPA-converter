@@ -327,7 +327,6 @@ if __name__ == "__main__":
 
     try:
         opts, args = getopt.getopt(argv, "h:")
-        print(opts, args)
         for opt in args:
             if opt == '-h':
                 print("the following commans are correct :\nconverter.py input.format outputformat\nor:\nconverter.py input.format outputformat essid\nthe converter is able to make following format conversions:\ncap -> hccap\ncap -> hccapx\nhccap -> hccapx\n")
@@ -336,6 +335,10 @@ if __name__ == "__main__":
     except getopt.GetoptError:
         t = 1
 
+    if not(len(argv) == 3 or len(argv) == 4):
+        print("bad args. the correct format is:\nconverter.py input.format outputformat\nor:\nconverter.py input.format outputformat essid")
+        exit(-1)
+        
     ans = analyze_args(argv[1], argv[2])
 
     if ans == -1:
