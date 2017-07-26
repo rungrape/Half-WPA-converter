@@ -11,9 +11,9 @@ pip install pypcapfile
 
 # 3.Tool's abilities and properties.
 Format conversion:
-       cap -> hccap (usage: python converter.py input.cap hccap / python converter.py input.cap hccap essid)
-       cap -> hccapx (usage: python converter.py input.cap hccapx / python converter.py input.cap hccapx essid)
-       hccap -> hccapx (usage: python converter.py input.hccap hccapx)
+       * cap -> hccap (usage: python converter.py input.cap hccap / python converter.py input.cap hccap essid)
+       * cap -> hccapx (usage: python converter.py input.cap hccapx / python converter.py input.cap hccapx essid)
+       * hccap -> hccapx (usage: python converter.py input.hccap hccapx)
 
 # 4.Launch.
 ```
