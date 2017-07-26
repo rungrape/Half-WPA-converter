@@ -2,6 +2,7 @@
 You are, if it's necessary to find AP's (which uses WPA authentication method) password with the help of hashcat, if you have only WPA half-handshake. Conversion to hccap format would be suitable for using hashcat_3.0, transformation from hccap to hccapx is for hashcat_3.6.0 users.
 
 # 2.Install requirements.
+Python3 only.
 You are to install the pcapfile module (via pip or by any other convenient way for you) to guarantee the correct work of the tool.
 Ex.:
 ```
