@@ -1,6 +1,5 @@
-# 1.Why the hell do I need this?
-You are, if it's necessary to crack your neighbour's WIFI (joking) with the help of hashcat. Conversion to hccap format would be suitable for fan of vintage stuff such as hashcat 3.0, transformation from hccap to hccapx is for haters of the bullshit.
-Also you are, if you're interested in Half-WPA cracking with the help of hashcat.
+# 1.Why do I need this?
+You are, if it's necessary to find AP's (which uses WPA authentication method) password with the help of hashcat, if you have only WPA half-handshake. Conversion to hccap format would be suitable for using hashcat_3.0, transformation from hccap to hccapx is for hashcat_3.6.0 users.
 
 # 2.Install requirements.
 You are to install the pcapfile module (via pip or by any other convenient way for you) to guarantee the correct work of the tool.
@@ -18,7 +17,7 @@ Format conversion:
 # 4.Launch.
 So you have the network dump such as following
 
-[![Picture to Yandex](https://4.downloader.disk.yandex.ru/preview/b586cd69881188a25ec7ca0bc1a54deb2acd23b6a9e0f135d7159f2e0b106914/inf/zJfBbBd61QCedkblN6xGjMv8g4xyr_Q_URxy7EwnPVKyIO0Lu_62_ddKGacbbZcLyqfGSig_jZCtZRZrdVmNYg%3D%3D?uid=108519566&filename=cracked.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&tknv=v2&size=1249x501)](https://4.downloader.disk.yandex.ru/preview/b586cd69881188a25ec7ca0bc1a54deb2acd23b6a9e0f135d7159f2e0b106914/inf/zJfBbBd61QCedkblN6xGjMv8g4xyr_Q_URxy7EwnPVKyIO0Lu_62_ddKGacbbZcLyqfGSig_jZCtZRZrdVmNYg%3D%3D?uid=108519566&filename=cracked.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&tknv=v2&size=1249x501)
+![alt text](https://disk.yandex.ru/client/disk/git_conv?display=normal&groupBy=none&order=1&selected=%2Fdisk%2Fgit_conv%2Fcracked.jpg&sort=name&view=list&wasAsideAnimated=true&typeClustering=geo&action=null&idAlbum=undefined&selectionSource=listing&idApp=client&dialog=slider&idDialog=%2Fdisk%2Fgit_conv%2Fcracked.jpg)
 
 
 Then you launch the converter as following:
@@ -30,6 +29,3 @@ The tool will gen file with name such as handshake_essid_smth.hccap (e.g. handsh
 hashcat64.exe -d 1 -a 0 -m 2500 handshake_LOL_1501068275.2922.hccap rockyou.txt
 ```
 Result:
-```
-[![Picture to Yandex](https://disk.yandex.ru/client/disk/git_conv?display=normal&groupBy=none&order=1&selected=%2Fdisk%2Fgit_conv%2Fcracked.jpg&sort=name&view=list&wasAsideAnimated=true&typeClustering=geo&action=null&idAlbum=undefined&selectionSource=listing&idApp=client&dialog=slider&idDialog=%2Fdisk%2Fgit_conv%2Fcracked.jpg)](https://disk.yandex.ru/client/disk/git_conv?display=normal&groupBy=none&order=1&selected=%2Fdisk%2Fgit_conv%2Fcracked.jpg&sort=name&view=list&wasAsideAnimated=true&typeClustering=geo&action=null&idAlbum=undefined&selectionSource=listing&idApp=client&dialog=slider&idDialog=%2Fdisk%2Fgit_conv%2Fcracked.jpg)
-```
