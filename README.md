@@ -11,7 +11,8 @@ Install python interpreter of version 3.6 from one of the following links:
 
 Install pip (for Linux only).
 ```
-sudo apt-get install python-pip python-dev build-essential 
+sudo apt-get install python3-setuptools
+sudo easy_install3 pip
 ```
 
 You are to install the pcapfile module (via pip or by any other convenient way for you) to guarantee the correct work of the tool.
