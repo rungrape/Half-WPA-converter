@@ -3,13 +3,13 @@ Converter, which is adapted for transforming half-wpa handshakes from .cap to .h
 ![handshake](https://pp.userapi.com/c639627/v639627673/30c73/sXSFfXqYkDg.jpg)
 
 # 2.Installation and usage.
-Install python interpreter of version 3.6 from one of the following links:
+Install python interpreter using one of the following links:
 * https://www.python.org/downloads/source/ (Linux)
 * https://www.python.org/downloads/windows/ (Windows)
 * https://www.python.org/downloads/mac-osx/ (Mac-OSx)
 * https://www.python.org/download/other/ (Other ones)
 
-Install pip (for Linux only).
+Install pip for Python3 (for Linux only).
 ```
 sudo apt-get install python3-setuptools
 sudo easy_install3 pip
