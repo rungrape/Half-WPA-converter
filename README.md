@@ -15,9 +15,9 @@ sudo apt-get install python3-setuptools
 sudo easy_install3 pip
 ```
 
-You are to install the pcapfile module (via pip or by any other convenient way for you) to guarantee the correct work of the tool.
+You are to install the pcapfile module to guarantee correct work of the tool.
 ```
-sudo pip install pypcapfile
+pip install -r requirements.txt
 ```
 Then you are able to use the converter. The possible commands:
 1. Create hashcat file only for specified ESSID.
