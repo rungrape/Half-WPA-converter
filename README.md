@@ -1,5 +1,5 @@
 # 1.Summary.
-Converter, which is adapted for transforming half-wpa handshakes from .cap .hccap/.hccapx format
+Converter, which is adapted for transforming half-wpa handshakes from .cap to .hccap/.hccapx format. You just need to listen for WPA2 probes from any client within range, and then throw up an Access Point with some SSID. Though the authentication will fail, there is enough information in the failed handshake to run bruteforce attack with hashcat.
 
 # 2.Installation and usage.
 Install python interpreter of version 3.6 from one of the following links:
