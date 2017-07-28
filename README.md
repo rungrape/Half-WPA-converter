@@ -15,11 +15,15 @@ pip install pypcapfile
 Then you are able to use the converter. The possible commands:
 1. Create hashcat file only for specified ESSID.
 ```
-../Scripts/python.exe converter.py inputfile.cap hccap ESSID  
+python.exe converter.py inputfile.cap hccap ESSID  
 ```
 2. Create hashcat files for each ESSID, which could be founded in input files.
 ```
-../Scripts/python.exe converter.py inputfile.cap hccap
+python.exe converter.py inputfile.cap hccap
+```
+3. Create .hccapx file from .hccap.
+```
+python.exe converter.py inputfile.hccap hccapx
 ```
 Look at launch example paragraph if you have any questions about program usage.
 
@@ -32,12 +36,12 @@ Format conversion:
 # 4.Launch example.
 So you have the network dump such as following
 
-![dump](https://pp.userapi.com/c841227/v841227628/c1f4/MNdDDHmRcBo.jpg)
+![dump](https://pp.userapi.com/c639627/v639627975/35b8c/rw9vSLp1psc.jpg)
 
 
 Then you launch the converter as following:
 ```
-C:/.../python.exe converter.py dump.cap hccap
+python.exe converter.py dump.cap hccap
 ```
 The tool will gen file with name such as handshake_essid_smth.hccap (e.g. handshake_LOL_1501068275.2922.hccap). Then you are to run the hashcat:
 ```
