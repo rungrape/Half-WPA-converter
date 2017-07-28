@@ -6,8 +6,8 @@ Install python interpreter of version 3.6 from one of the following links:
 * https://www.python.org/downloads/source/ (Linux)
 * https://www.python.org/downloads/windows/ (Windows)
 * https://www.python.org/downloads/mac-osx/ (Mac-OSx)
-* https://www.python.org/download/other/ (Oter ones)
-Python3 only.
+* https://www.python.org/download/other/ (Other ones)
+
 You are to install the pcapfile module (via pip or by any other convenient way for you) to guarantee the correct work of the tool.
 ```
 pip install pypcapfile
