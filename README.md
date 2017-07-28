@@ -1,6 +1,6 @@
 # 1.Summary.
 Converter, which is adapted for transforming half-wpa handshakes from .cap to .hccap/.hccapx format. You just need to listen for WPA2 probes from any client within range, and then throw up an Access Point with some SSID. Though the authentication will fail, there is enough information in the failed handshake to run bruteforce attack with hashcat. So, you don't need the two last packets of EAPOL handshake to start bruteforce attack of the password.
-![handshake](https://pp.userapi.com/c639627/v639627673/30c73/sXSFfXqYkDg.jpg)
+![handshake](https://pp.userapi.com/c639627/v639627126/4bddb/uC0MZML0vTk.jpg)
 
 # 2.Installation and usage.
 Install python interpreter using one of the following links:
