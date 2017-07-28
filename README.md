@@ -1,13 +1,27 @@
-# 1.Why do I need this?
-You are, if it's necessary to find AP's (which uses WPA authentication method) password with the help of hashcat, if you have only WPA half-handshake. Conversion to hccap format would be suitable for using hashcat_3.0, transformation from hccap to hccapx is for hashcat_3.6.0 users.
+# 1.Summary.
+Converter, which is adapted for transforming half-wpa handshakes from .cap .hccap/.hccapx format
 
-# 2.Install requirements.
+# 2.Installation and usage.
+Install python interpreter of version 3.6 from one of the following links:
+* https://www.python.org/downloads/source/ (Linux)
+* https://www.python.org/downloads/windows/ (Windows)
+* https://www.python.org/downloads/mac-osx/ (Mac-OSx)
+* https://www.python.org/download/other/ (Oter ones)
 Python3 only.
 You are to install the pcapfile module (via pip or by any other convenient way for you) to guarantee the correct work of the tool.
-Ex.:
 ```
 pip install pypcapfile
 ```
+Then you are able to use the converter. The possible commands:
+1. Create hashcat file only for specified ESSID.
+```
+../Scripts/python.exe converter.py inputfile.cap hccap ESSID  
+```
+2. Create hashcat files for each ESSID, which could be founded in input files.
+```
+../Scripts/python.exe converter.py inputfile.cap hccap
+```
+Look at launch example paragraph if you have any questions about program usage.
 
 # 3.Tool's abilities and properties.
 Format conversion:
@@ -15,10 +29,10 @@ Format conversion:
 * cap -> hccapx (usage: python converter.py input.cap hccapx / python converter.py input.cap hccapx essid)
 * hccap -> hccapx (usage: python converter.py input.hccap hccapx)
 
-# 4.Launch.
+# 4.Launch example.
 So you have the network dump such as following
 
-![dump](https://pp.userapi.com/c840129/v840129682/16ce6/zprZmfwFt6U.jpg)
+![dump](https://pp.userapi.com/c841227/v841227628/c1f4/MNdDDHmRcBo.jpg)
 
 
 Then you launch the converter as following:
