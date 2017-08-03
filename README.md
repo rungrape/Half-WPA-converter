@@ -1,5 +1,5 @@
 # 1.Summary.
-Converter, which is adapted for transforming half-wpa handshakes from .cap to .hccap/.hccapx format. You just need to listen for WPA2 probes from any client within range, and then throw up an Access Point with some SSID. Though the authentication will fail, there is enough information in the failed handshake to run bruteforce attack with hashcat. So, you don't need the two last packets of EAPOL handshake to start bruteforce attack of the password.
+Converter, which is adapted for transforming half-wpa handshakes from .cap to .hccap/.hccapx format. You just need to listen for WPA2 probes from any client within range, and then throw up an Access Point with some ESSID. Though the authentication will fail, there is enough information in the failed handshake to run bruteforce attack with hashcat. So, you don't need the two last packets of EAPOL handshake to start bruteforce attack of the password.
 ![handshake](https://pp.userapi.com/c639627/v639627126/4bddb/uC0MZML0vTk.jpg)
 
 # 2.Installation and usage.
@@ -20,7 +20,7 @@ You are to install the pcapfile module to guarantee correct work of the tool.
 pip install -r requirements.txt
 ```
 Then you are able to use the converter. The possible commands:
-1. Create hashcat file only for specified ESSID.
+1. Create .hccap file only for specified ESSID.
 ```
 python.exe converter.py inputfile.cap hccap ESSID  
 ```
@@ -31,6 +31,14 @@ python.exe converter.py inputfile.cap hccap
 3. Create .hccapx file from .hccap.
 ```
 python.exe converter.py inputfile.hccap hccapx
+```
+4. Create .hccapx file only for specified ESSID.
+```
+python.exe converter.py inputfile.cap hccapx ESSID
+```
+5. Create .hccapx files for each ESSID, which could be founded in input files.
+```
+python.exe converter.py inputfile.cap hccapx
 ```
 Look at launch example paragraph if you have any questions about program usage.
 
