@@ -78,25 +78,29 @@ def write_cap_hccap(essid, pack, ff):
         offset = 2
     else:
         offset = 0
+    if len(pack[1]) == 153:
+        offset1 = 2
+    else:
+        offset1 = 0
     bssid = pack[0][10:16]
     cmac = (pack[0])[4:10]
-    snonce = (pack[1])[51:83]
+    snonce = (pack[1])[ - offset1 + 51: - offset1 + 83]
     anonce = (pack[0])[ - offset + 51: - offset + 83]
-    a1 = pack[1][34]
-    a2 = pack[1][35]
-    a3 = (pack[1])[36:38]
-    a4 = pack[1][38]
-    a5 = (pack[1])[39:41]
-    a6 = (pack[1])[41:43]
-    a8 = (pack[1])[43:51]
-    a9 = (pack[1])[51:83]
-    a10 = (pack[1])[83:99]
-    a11 = (pack[1])[99:107]
-    a12 = (pack[1])[107:115]
-    a13 = (pack[1])[131:133]
-    a14 = (pack[1])[133:133 + int(a13.encode('hex'), 16) + 1]
+    a1 = pack[1][ - offset1 + 34]
+    a2 = pack[1][ - offset1 + 35]
+    a3 = (pack[1])[ - offset1 + 36: - offset1 + 38]
+    a4 = pack[1][ - offset1 + 38]
+    a5 = (pack[1])[ - offset1 + 39: - offset1 + 41]
+    a6 = (pack[1])[ - offset1 + 41: - offset1 + 43]
+    a8 = (pack[1])[ - offset1 + 43: - offset1 + 51]
+    a9 = (pack[1])[ - offset1 + 51: - offset1 + 83]
+    a10 = (pack[1])[ - offset1 + 83: - offset1 + 99]
+    a11 = (pack[1])[ - offset1 + 99: - offset1 + 107]
+    a12 = (pack[1])[ - offset1 + 107: - offset1 + 115]
+    a13 = (pack[1])[ - offset1 + 131: - offset1 + 133]
+    a14 = (pack[1])[ - offset1 + 133: - offset1 + 133 + int(a13.encode('hex'), 16) + 1]
     eapol = a1 + a2 + a3 + a4 + a5 + a6 + a8 + a9 + a10 + a11 + a12 + (b'\x00' * 16) + a13 + a14
-    mic = (pack[1])[115:131]
+    mic = (pack[1])[ - offset1 + 115: - offset1 + 131]
     # ----------------------------------------------
     if type(essid) is str:
         hccap = bytearray(essid.encode('ascii'))
@@ -125,6 +129,10 @@ def write_cap_hccapx(essid, pack, ff):
         offset = 2
     else:
         offset = 0
+    if len(pack[1]) == 153:
+        offset1 = 2
+    else:
+        offset1 = 0
     signature = b'\x48\x43\x50\x58'
     version = b'\x04\x00\x00\x00'
     message_pair = b'\x00'
@@ -137,26 +145,26 @@ def write_cap_hccapx(essid, pack, ff):
             break
         i += 1
     keyver = b'\x02'  # !!!!!!!!!!!!
-    mic = (pack[1])[115:131]
+    mic = (pack[1])[ - offset1 + 115: - offset1 + 131]
     bssid = (pack[0])[10:16]
     cmac = (pack[0])[4:10]
-    snonce = (pack[1])[51:83]
+    snonce = (pack[1])[ - offset1 + 51: - offset1 + 83]
     anonce = (pack[0])[ - offset + 51: - offset + 83]
 
-    a1 = pack[1][34]#struct.pack('>I', (pack[1])[34])
+    a1 = pack[1][ - offset1 + 34]#struct.pack('>I', (pack[1])[34])
     print(type(a1))
-    a2 = pack[1][35]#struct.pack('>I', (pack[1])[35])
-    a3 = (pack[1])[36:38]
-    a4 = pack[1][38]#struct.pack('>I', (pack[1])[38])
-    a5 = (pack[1])[39:41]
-    a6 = (pack[1])[41:43]
-    a8 = (pack[1])[43:51]
-    a9 = (pack[1])[51:83]
-    a10 = (pack[1])[83:99]
-    a11 = (pack[1])[99:107]
-    a12 = (pack[1])[107:115]
-    a13 = (pack[1])[131:133]
-    a14 = (pack[1])[133:133 + from_bytes(a13, big_endian=True) + 1]
+    a2 = pack[1][ - offset1 + 35]#struct.pack('>I', (pack[1])[35])
+    a3 = (pack[1])[ - offset1 + 36: - offset1 + 38]
+    a4 = pack[1][ - offset1 + 38]#struct.pack('>I', (pack[1])[38])
+    a5 = (pack[1])[ - offset1 + 39: - offset1 + 41]
+    a6 = (pack[1])[ - offset1 + 41: - offset1 + 43]
+    a8 = (pack[1])[ - offset1 + 43: - offset1 + 51]
+    a9 = (pack[1])[ - offset1 + 51: - offset1 + 83]
+    a10 = (pack[1])[ - offset1 + 83: - offset1 + 99]
+    a11 = (pack[1])[ - offset1 + 99: - offset1 + 107]
+    a12 = (pack[1])[ - offset1 + 107: - offset1 + 115]
+    a13 = (pack[1])[ - offset1 + 131: - offset1 + 133]
+    a14 = (pack[1])[ - offset1 + 133: - offset1 + 133 + from_bytes(a13, big_endian=True) + 1]
     eapol = a1 + a2 + a3 + a4 + a5 + a6 + a8 + a9 + a10 + a11 + a12 + (b'\x00' * 16) + a13 + a14
     # ----------------------------------------------
     hccapx = bytearray(signature)
