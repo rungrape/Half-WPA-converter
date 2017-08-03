@@ -20,7 +20,7 @@ def find_essid(bssid, pack):
     while t == 0:
         try:
             if binascii.unhexlify(pack[i][1].packet)[0:2] == b'\x80\x00':
-                if binascii.unhexlify(pack[i][1].packet)[10:16] == bssid:
+                if binascii.unhexlify(pack[i][1].packet)[16:22] == bssid:
                     essid_len = binascii.unhexlify(pack[i][1].packet)[37]
                     essid = binascii.unhexlify(pack[i][1].packet)[38:38 + essid_len]
                     essid_cache.update({int.from_bytes(bssid, byteorder='big'): essid})
@@ -44,6 +44,7 @@ def find_bssid(essid, pack):
         try:
             if binascii.unhexlify(pack[i][1].packet)[0:2] == b'\x80\x00':
                 essid_len = binascii.unhexlify(pack[i][1].packet)[37]
+                t = binascii.unhexlify(pack[i][1].packet)[38:38 + essid_len]
                 if binascii.unhexlify(pack[i][1].packet)[38:38 + essid_len] == essid:
                     bssid = binascii.unhexlify(pack[i][1].packet)[10:16]
                     return bssid
@@ -98,18 +99,22 @@ def hccap_hccapx(f):
 
 
 def write_cap_hccap(essid, pack, ff):
+    if len(pack[0]) == 131:
+        offset = 2
+    else:
+        offset = 0
     bssid = pack[0][10:16]
     cmac = (pack[0])[4:10]
-    snonce = (pack[1])[51:83]
-    anonce = (pack[0])[51:83]
+    snonce = (pack[1])[51: + 83]
+    anonce = (pack[0])[ - offset + 51: - offset + 83]
     a1 = int.to_bytes((pack[1])[34], 1, byteorder='big')
     a2 = int.to_bytes((pack[1])[35], 1, byteorder='big')
-    a3 = (pack[1])[36:38]
+    a3 = (pack[1])[36: + 38]
     a4 = int.to_bytes((pack[1])[38], 1, byteorder='big')
-    a5 = (pack[1])[39:41]
-    a6 = (pack[1])[41:43]
-    a8 = (pack[1])[43:51]
-    a9 = (pack[1])[51:83]
+    a5 = (pack[1])[39: + 41]
+    a6 = (pack[1])[41: + 43]
+    a8 = (pack[1])[43: + 51]
+    a9 = (pack[1])[51: + 83]
     a10 = (pack[1])[83:99]
     a11 = (pack[1])[99:107]
     a12 = (pack[1])[107:115]
@@ -150,14 +155,14 @@ def cap_hccap(essid, f):
         i = 0
         while True:
             try:
-                if binascii.unhexlify(packets[i][1].packet)[32:34] == b'\x88\x8e' and binascii.unhexlify(packets[i][1].packet)[39:41] == b'\x00\x8a':
+                if b'\x88\x8e' in binascii.unhexlify(packets[i][1].packet)[28:36] and b'\x00\x8a' in binascii.unhexlify(packets[i][1].packet)[35:43]:
                     if binascii.unhexlify(packets[i][1].packet)[10:16] == bssid:
                         break
                 i += 1
             except IndexError:
                 break
         j = i + 1
-        while binascii.unhexlify(packets[j][1].packet)[32:34] != b'\x88\x8e':
+        while not (b'\x01\x0a' in binascii.unhexlify(packets[j][1].packet)[28:36]):
             j += 1
         from time import time
         f_out = "handshake_" + essid.decode('ascii') + "_" + str(time()) + ".hccap"
@@ -171,12 +176,12 @@ def cap_hccap(essid, f):
         while True:
             try:
                 t = (packets[i][1].packet)
-                if binascii.unhexlify(packets[i][1].packet)[32:34] == b'\x88\x8e' and binascii.unhexlify(packets[i][1].packet)[39:41] == b'\x00\x8a':
+                if b'\x88\x8e' in binascii.unhexlify(packets[i][1].packet)[28:36] and b'\x00\x8a' in binascii.unhexlify(packets[i][1].packet)[35:43]:
                     bssid = binascii.unhexlify(packets[i][1].packet)[10:16]
                     essid = find_essid(bssid, packets)
                     if essid != 0 and essid != 1:
                         j = i + 1
-                        while binascii.unhexlify(packets[j][1].packet)[32:34] != b'\x88\x8e':
+                        while not (b'\x01\x0a' in binascii.unhexlify(packets[j][1].packet)[35:43]):
                             j += 1
                         from time import time
                         f_out = "handshake_" + essid.decode('ascii') + "_" + str(time()) + ".hccap"
@@ -191,6 +196,11 @@ def cap_hccap(essid, f):
 
 
 def write_cap_hccapx(essid, pack, ff):
+    if len(pack[0]) == 131:
+        offset = 2
+    else:
+        offset = 0
+
     signature = b'\x48\x43\x50\x58'
     version = b'\x04\x00\x00\x00'
     message_pair = b'\x00'
@@ -200,9 +210,10 @@ def write_cap_hccapx(essid, pack, ff):
     bssid = (pack[0])[10:16]
     cmac = (pack[0])[4:10]
     snonce = (pack[1])[51:83]
-    anonce = (pack[0])[51:83]
+    anonce = (pack[0])[51 - offset:83 - offset]
 
     a1 = int.to_bytes((pack[1])[34], 1, byteorder='big')
+    print(type(a1))
     a2 = int.to_bytes((pack[1])[35], 1, byteorder='big')
     a3 = (pack[1])[36:38]
     a4 = int.to_bytes((pack[1])[38], 1, byteorder='big')
@@ -253,14 +264,14 @@ def cap_hccapx(essid, f):
         i = 0
         while True:
             try:
-                if binascii.unhexlify(packets[i][1].packet)[32:34] == b'\x88\x8e' and binascii.unhexlify(packets[i][1].packet)[39:41] == b'\x00\x8a':
+                if b'\x88\x8e' in binascii.unhexlify(packets[i][1].packet)[28:36] and b'\x00\x8a' in binascii.unhexlify(packets[i][1].packet)[35:43]:
                     if binascii.unhexlify(packets[i][1].packet)[10:16] == bssid:
                         break
                 i += 1
             except IndexError:
                 break
         j = i + 1
-        while binascii.unhexlify(packets[j][1].packet)[32:34] != b'\x88\x8e':
+        while not (b'\x01\x0a' in binascii.unhexlify(packets[j][1].packet)[28:36]):
             j += 1
         from time import time
         f_out = "handshake_" + essid.decode('ascii') + "_" + str(time()) + ".hccapx"
@@ -272,12 +283,12 @@ def cap_hccapx(essid, f):
         i = 0
         while True:
             try:
-                if binascii.unhexlify(packets[i][1].packet)[32:34] == b'\x88\x8e' and binascii.unhexlify(packets[i][1].packet)[39:41] == b'\x00\x8a':
+                if b'\x88\x8e' in binascii.unhexlify(packets[i][1].packet)[28:36] and b'\x00\x8a' in binascii.unhexlify(packets[i][1].packet)[35:43]:
                     bssid = binascii.unhexlify(packets[i][1].packet)[10:16]
                     essid = find_essid(bssid, packets)
                     if essid != 0 and essid != 1:
                         j = i + 1
-                        while binascii.unhexlify(packets[j][1].packet)[32:34] != b'\x88\x8e':
+                        while not (b'\x88\x8e' in binascii.unhexlify(packets[j][1].packet)[28:36]):
                             j += 1
                         from time import time
                         f_out = "handshake_" + essid.decode('ascii') + "_" + str(time()) + ".hccapx"
@@ -315,6 +326,10 @@ def analyze_args(a1, a2):
 
 
 
+'''essid = 0
+f_in = "ainane-01.cap"
+f = open(f_in, 'rb')
+cap_hccap(essid, f)'''
 
 if __name__ == "__main__":
     from sys import argv, exit
