@@ -24,7 +24,7 @@ Then you are able to use the converter. The possible commands:
 ```
 python.exe converter.py inputfile.cap hccap ESSID  
 ```
-2. Create hashcat files for each ESSID, which could be founded in input files.
+2. Create .hccap files for each ESSID, which could be founded in input files.
 ```
 python.exe converter.py inputfile.cap hccap
 ```
