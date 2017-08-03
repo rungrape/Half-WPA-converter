@@ -375,7 +375,7 @@ def analyze_args(a1, a2):
         return 3
 
 
-essid = "Labs"
+'''essid = "Labs"
 f_in = "ainane-01.cap"
 f = open(f_in, 'rb')
 cap_hccapx(essid, f)
@@ -436,4 +436,3 @@ if __name__ == "__main__":
             f = open(f_in, 'rb')
             hccap_hccapx(f)
             f.close()
-'''
