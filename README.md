@@ -40,7 +40,7 @@ python.exe converter.py inputfile.cap hccapx ESSID
 ```
 python.exe converter.py inputfile.cap hccapx
 ```
-Look at launch example paragraph if you have any questions about program usage.
+Look at launch example paragraph if you have any doubts about program usage.
 
 # 3.Tool's abilities and properties.
 Format conversion:
